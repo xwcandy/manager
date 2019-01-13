@@ -52,14 +52,25 @@ export default {
     submitForm(formData) {
       this.$refs[formData].validate((valid) => {
         if (valid) {
-          // 验证不为空 并且长度符合 
-          // 发请求
+          // 内容不为空 并且长度符合要求 成功
+          // 发请求 axios 调用接口
           this.$axios.post('login',this.formData)
             .then( res => {
               console.log(res);
               if(res.data.meta.status === 200){
                 //登录成功
-                this.$message.success(res.data.meta.msg);
+                //提示信息
+                this.$message({ 
+                    message:res.data.meta.msg,
+                    type: 'success',
+                    duration:1000    //持续时间1秒
+                });
+                //保存token
+                window.sessionStorage.setItem('token',res.data.data.token);
+                // 去首页 （定时器为了模拟延迟）
+                setTimeout(() => {
+                    this.$router.push('/');
+                }, 2000);
               }else if(res.data.meta.status === 400){
                 //登录失败 提示错误
                 this.$message.error(res.data.meta.msg);
@@ -67,7 +78,7 @@ export default {
             })
 
         } else {
-          // 提示
+          // 失败 弹框提示
           this.$message.error('请正确输入用户名和密码哦！😁');
           return false;
         }
