@@ -10,6 +10,7 @@ Vue.use(ElementUI);
 // 导入axios 自己开发的插件
 import axios from './lib/vue-axios';
 Vue.use(axios);
+
 //导入路由
 import router from './lib/router';
 

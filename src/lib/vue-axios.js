@@ -7,6 +7,6 @@ axios.defaults.baseURL = 'http://localhost:8888/api/private/v1/';
 //暴露
 export default{ 
     install(Vue){
-        Vue.prototype.$axios = axios;
+        Vue.prototype.$axios = axios; 
     }
 }

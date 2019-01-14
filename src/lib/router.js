@@ -28,5 +28,29 @@ let router = new VueRouter({
     routes  //routes: routes
 })
 
+
+// 注册导航守卫
+router.beforeEach((to,from,next) => {
+    console.log(from);
+    console.log(to);
+    if(to.path == '/login'){
+        // 什么也不做
+        next();
+    }else {
+        //登录状态判断
+        let token = window.sessionStorage.getItem("token");
+        if (token) {
+          //已登录
+          next();          
+        } else {
+          //未登录
+          Vue.prototype.$message.error("不要调皮，请先登录哦😯！");
+          //到登录页
+          Vue.prototype.$router.push("/login");
+        }
+    }
+});
+
+
 //暴露出去  （实例化路由对象）
 export default router;
