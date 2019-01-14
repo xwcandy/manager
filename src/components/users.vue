@@ -26,10 +26,10 @@
                 <el-table-column prop="role_name" label="姓名" width="150"></el-table-column>
                 <el-table-column prop="email" label="邮箱" width="300"></el-table-column>
                 <el-table-column prop="mobile" label="电话" width="300"></el-table-column>
-                <el-table-column label="用户状态" width="100">
+                <el-table-column prop='mg_state' label="用户状态" width="100">
                     <!-- 开关 -->
                     <template slot-scope='scope'>
-                        <el-switch v-model="state" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+                        <el-switch v-model="scope.row.mg_state" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
                     </template>
                 </el-table-column>
                 <el-table-column label="操作">
@@ -44,6 +44,7 @@
             </template>
         </el-col>
     </el-row>
+    <!-- 分页区 -->
     <el-row>
         <el-col :span='24'>
             <el-pagination 
@@ -75,8 +76,6 @@ export default {
       },
       //数据总数量
       total: 0,
-      // 开关状态
-      state: true,
     };
   },
   // 生命周期函数
