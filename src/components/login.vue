@@ -70,7 +70,7 @@ export default {
                 // 去首页 （定时器为了模拟延迟）
                 setTimeout(() => {
                     this.$router.push('/');
-                }, 2000);
+                }, 1500);
               }else if(res.data.meta.status === 400){
                 //登录失败 提示错误
                 this.$message.error(res.data.meta.msg);

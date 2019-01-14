@@ -13,7 +13,7 @@
           </el-col>
           <el-col :span="2">
             <div class="grid-content bg-purple exit-btn">
-                <el-button type="danger" @click='logout'>退出</el-button>
+              <el-button type="danger" @click="logout">退出</el-button>
             </div>
           </el-col>
         </el-row>
@@ -21,7 +21,30 @@
       <!-- 主体 -->
       <el-container>
         <!-- 侧边栏 -->
-        <el-aside width="200px">Aside</el-aside>
+        <el-aside width="200px">
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+            router   
+          >
+            <el-submenu v-for="(item, index) in menuList" :key="item.id" :index="item.order+''">
+              <template slot="title" class='nav-title'>
+                <i class="el-icon-location"></i>
+                <span>{{item.authName}}</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item v-for="(ele, i) in item.children" :key="ele.id" :index="'/'+ele.path">
+                    <i class="el-icon-menu"></i>
+                    <span>{{ele.authName}}</span> 
+                </el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+
+          </el-menu>
+        </el-aside>
         <!-- 右边内容 -->
         <el-main>Main</el-main>
       </el-container>
@@ -31,25 +54,51 @@
 
 <script>
 export default {
-  beforeCreate() {
-    // let token = window.sessionStorage.getItem("token");
-    // if (token) {
-    //   //已登录
-    // } else {
-    //   //未登录
-    //   this.$message.error("不要调皮，请先登录哦😯！");
-    //   //到登录页
-    //   this.$router.push("/login");
-    // }
+  data() {
+      return {
+          menuList: [],
+      }
   },
   methods: {
     logout() {
-      // 删除token
-      window.sessionStorage.removeItem("token");
-      // 跳转到登录页
-      this.$router.push("/login");
+      this.$confirm("你真的要狠心离开我吗?", "提示", {
+        confirmButtonText: "狠心抛弃",
+        cancelButtonText: "不忍离开",
+        type: "warning"
+      })
+        .then(() => {
+          // 确认退出
+          this.$message({
+            type: "success",
+            message: "你真狠心!"
+          });
+          // 删除token
+          window.sessionStorage.removeItem("token");
+          // 跳转到登录页 编程式导航
+          this.$router.push("/login");
+        })
+        .catch(() => {
+          // 取消
+          this.$message({
+            type: "success",
+            message: "你真的好极了！"
+          });
+        });
     }
-  }
+  },
+  // 生命周期函数   created实例创建完成就会触发
+  created(){
+    //发请求
+    this.$axios.get('menus',{
+        headers: {'Authorization':sessionStorage.getItem('token')}
+    }).then( res => {
+        console.log(res);
+        this.menuList = res.data.data;
+    }).catch( err => {
+        console.log(err);
+    })   
+  },
+  
 };
 </script>
 
@@ -66,15 +115,15 @@ export default {
     text-align: center;
     line-height: 60px;
     .logo {
-        text-align: left;
+      text-align: left;
     }
     .title {
-        font-size: 30px;
-        font-weight: 700;
-        color: #fff;
+      font-size: 30px;
+      font-weight: 700;
+      color: #fff;
     }
     .exit-btn {
-        text-align: right;
+      text-align: right;
     }
   }
 
@@ -91,6 +140,15 @@ export default {
     text-align: center;
     line-height: 160px;
   }
+  .el-menu {
+      border-right: 0;
+      .el-submenu__title{
+          text-align: left;
+      }
+      
+      
+  }
+  
 }
 </style>
 
