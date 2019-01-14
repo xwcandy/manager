@@ -16,6 +16,11 @@ import router from './lib/router';
 
 // 引入base.css
 import './assets/base.css';
+// 导入面包屑
+import myBreadcrumb from './components/myBreadcrumb.vue';
+
+// 注册全局组件
+Vue.component('myBreadcrumb', myBreadcrumb );
 
 Vue.config.productionTip = false;
 

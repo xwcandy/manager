@@ -5,16 +5,14 @@
       <el-header>
         <!-- layout布局 类似栅格 -->
         <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple logo">1</div>
+          <el-col :span="4" class='logo'>
+            <img src="../assets/logo.png" alt="">
           </el-col>
           <el-col :span="18">
             <div class="grid-content bg-purple-light title">电商后台管理系统</div>
           </el-col>
-          <el-col :span="2">
-            <div class="grid-content bg-purple exit-btn">
+          <el-col :span="2" class='exit-btn'>
               <el-button type="danger" @click="logout">退出</el-button>
-            </div>
           </el-col>
         </el-row>
       </el-header>
@@ -46,7 +44,9 @@
           </el-menu>
         </el-aside>
         <!-- 右边内容 -->
-        <el-main>Main</el-main>
+        <el-main>
+            <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -135,10 +135,11 @@ export default {
   }
 
   .el-main {
+    padding-top: 0;
     background-color: #e9eef3;
     color: #333;
-    text-align: center;
-    line-height: 160px;
+    // text-align: center;
+    // line-height: 160px;
   }
   .el-menu {
       border-right: 0;

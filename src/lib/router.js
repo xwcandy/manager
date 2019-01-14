@@ -11,15 +11,26 @@ Vue.use(VueRouter);
 import login from '../components/login.vue';
 import main from '../components/main.vue';
 
+// 导入首页的组件
+import users from '../components/users.vue'
+
 //写路由规则
 let routes = [
+    // 登录页
     {
         path: '/login',
         component: login
     },
+    // 主页
     {
         path: '/',
-        component: main
+        component: main,
+        children: [
+            {
+                path: 'users',
+                component: users
+            }
+        ]
     }
 ]
 
@@ -46,7 +57,8 @@ router.beforeEach((to,from,next) => {
           //未登录
           Vue.prototype.$message.error("不要调皮，请先登录哦😯！");
           //到登录页
-          Vue.prototype.$router.push("/login");
+          // Vue.prototype.$router.push("/login");
+          next('/login');
         }
     }
 });

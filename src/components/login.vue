@@ -98,6 +98,5 @@ export default {
         width: 100%;
       }
     }
-
-  }
+  } 
 </style>
