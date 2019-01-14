@@ -90,7 +90,7 @@ export default {
   created(){
     //发请求
     this.$axios.get('menus',{
-        headers: {'Authorization':sessionStorage.getItem('token')}
+        // headers: {'Authorization':sessionStorage.getItem('token')}
     }).then( res => {
         console.log(res);
         this.menuList = res.data.data;
@@ -102,7 +102,7 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 .main-container {
   height: 100%;
   .el-container {
@@ -142,11 +142,12 @@ export default {
   }
   .el-menu {
       border-right: 0;
-      .el-submenu__title{
-          text-align: left;
+      .el-submenu {
+          div{
+            text-align: left;
+          }
       }
-      
-      
+   
   }
   
 }

@@ -31,8 +31,8 @@ let router = new VueRouter({
 
 // 注册导航守卫
 router.beforeEach((to,from,next) => {
-    console.log(from);
-    console.log(to);
+    // console.log(from);
+    // console.log(to);
     if(to.path == '/login'){
         // 什么也不做
         next();

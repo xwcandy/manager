@@ -56,24 +56,17 @@ export default {
           // 发请求 axios 调用接口
           this.$axios.post('login',this.formData)
             .then( res => {
-              console.log(res);
+            //   console.log(res);
               if(res.data.meta.status === 200){
                 //登录成功
-                //提示信息
-                this.$message({ 
-                    message:res.data.meta.msg,
-                    type: 'success',
-                    duration:1000    //持续时间1秒
-                });
                 //保存token
                 window.sessionStorage.setItem('token',res.data.data.token);
-                // 去首页 （定时器为了模拟延迟）
+                // 跳转去首页 （定时器为了模拟延迟）
                 setTimeout(() => {
                     this.$router.push('/');
                 }, 1500);
               }else if(res.data.meta.status === 400){
-                //登录失败 提示错误
-                this.$message.error(res.data.meta.msg);
+                //登录失败 
               }
             })
 
