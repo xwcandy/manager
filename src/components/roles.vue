@@ -40,6 +40,9 @@
                                 </el-row>
                             </el-col>
                         </el-row>
+                        <el-row v-if="props.row.children.length == 0">
+                            <el-col :span='24'>暂时没有权限</el-col>
+                        </el-row>
                     </template>
                 </el-table-column>
                 <el-table-column type='index' label="#" width="30"></el-table-column>

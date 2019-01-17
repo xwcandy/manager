@@ -19,6 +19,13 @@ import './assets/base.css';
 // 导入面包屑组件
 import myBreadcrumb from './components/myBreadcrumb.vue';
 
+// 导入moment.js
+import moment from 'moment';
+// 注册全局过滤器 美化时间格式
+Vue.filter('beautifyTime',(value)=>{
+  return moment(value).format('YYYY-MM-DD HH:mm:ss');
+})
+
 // 注册全局组件
 Vue.component('myBreadcrumb', myBreadcrumb );
 

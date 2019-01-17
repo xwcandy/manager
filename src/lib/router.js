@@ -14,6 +14,9 @@ import main from '../components/main.vue';
 // 导入首页的嵌套组件
 import users from '../components/users.vue'
 import roles from '../components/roles.vue'
+import rights from '../components/rights.vue'
+import goods from '../components/goods.vue'
+
 
 //写路由规则
 let routes = [
@@ -34,6 +37,14 @@ let routes = [
             {
                 path: 'roles',
                 component: roles
+            },
+            {
+                path: 'rights',
+                component: rights
+            },
+            {
+                path: 'goods',
+                component: goods
             },
         ]
     }
