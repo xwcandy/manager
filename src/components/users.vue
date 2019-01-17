@@ -21,7 +21,7 @@
     <el-row>
         <el-col :span='24'>
             <template>
-              <el-table :data="tableData" border  style="width: 100%">
+              <el-table :data="usersList" border  style="width: 100%">
                 <el-table-column type='index' label="#" width="30"></el-table-column>
                 <el-table-column prop="role_name" label="姓名" width="150"></el-table-column>
                 <el-table-column prop="email" label="邮箱" width="300"></el-table-column>
@@ -67,7 +67,7 @@ export default {
       level2: "用户管理",
       level3: "用户列表",
       // 表格数据
-      tableData: [],
+      usersList: [],
       // 发送的数据
       sendData: {
           query: '',
@@ -79,16 +79,18 @@ export default {
     };
   },
   // 生命周期函数
-  created(){
+  //   async
+  async created(){
       //发请求
-      this.$axios.get('users',{
+      let res = await this.$axios.get('users',{
           params: this.sendData
-      }).then( res => {
-          console.log(res);
-          this.tableData = res.data.data.users;
-          // 总数量保存一下
-          this.total = res.data.data.total;
       })
+
+      console.log(res);
+      this.usersList = res.data.data.users;
+      // 总数量保存一下
+      this.total = res.data.data.total;
+      
   }
 };
 </script>

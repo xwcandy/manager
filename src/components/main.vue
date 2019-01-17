@@ -43,8 +43,9 @@
 
           </el-menu>
         </el-aside>
-        <!-- 右边内容 -->
+        <!-- 右边正文内容 -->
         <el-main>
+            <!-- 嵌套路由出口 -->
             <router-view></router-view>
         </el-main>
       </el-container>
@@ -56,6 +57,7 @@
 export default {
   data() {
       return {
+          // 左侧菜单列表
           menuList: [],
       }
   },

@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    props: ['level2','level3'],
+    props: ['level2','level3']
 };
 </script>
 

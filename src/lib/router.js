@@ -11,8 +11,9 @@ Vue.use(VueRouter);
 import login from '../components/login.vue';
 import main from '../components/main.vue';
 
-// 导入首页的组件
+// 导入首页的嵌套组件
 import users from '../components/users.vue'
+import roles from '../components/roles.vue'
 
 //写路由规则
 let routes = [
@@ -29,7 +30,11 @@ let routes = [
             {
                 path: 'users',
                 component: users
-            }
+            },
+            {
+                path: 'roles',
+                component: roles
+            },
         ]
     }
 ]

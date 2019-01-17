@@ -16,7 +16,7 @@ import router from './lib/router';
 
 // 引入base.css
 import './assets/base.css';
-// 导入面包屑
+// 导入面包屑组件
 import myBreadcrumb from './components/myBreadcrumb.vue';
 
 // 注册全局组件
